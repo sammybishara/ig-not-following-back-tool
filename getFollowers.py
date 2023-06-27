@@ -51,9 +51,14 @@ def print_not_following(username : str):
     # finds followers who are not follwoing the profile back and prints them 
     not_following_back = set(profile.get_followees()) - set(profile.get_followers())
     
+    ignore = set()
+    
+    for line in open("file.txt", "r"):
+        ignore.add(line.strip())
+        
     for profile in not_following_back:
-        print(profile.username)
-                               
+        if profile.username not in ignore: print(profile.username)
+    
     
 # launches firefox with the given user profile 
 def open_firefox(profile_path : str):
